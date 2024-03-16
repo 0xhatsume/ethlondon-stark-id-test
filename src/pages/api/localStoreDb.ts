@@ -10,6 +10,7 @@ export async function addOrUpdateMapping(fid: number,
 starknetAddress: string
 ): Promise<void> {
     const fidStarkAddressMapping:IfidStarkAddressMapping = JSON.parse(localStorage?.getItem("fid-starkaddress") || "{}")
+    console.log("trying to add or update mapping of fid: ", fid, " to starknet address: ", starknetAddress)
     fidStarkAddressMapping[fid] = starknetAddress
 }
 
@@ -18,6 +19,8 @@ starknetAddress: string
 export async function getMappingByFid(fid: number): Promise<string | null> {
 
     const fidStarkAddressMapping:IfidStarkAddressMapping = JSON.parse(localStorage?.getItem("fid-starkaddress") || "{}")
+
+    console.log("trying to get mapping of fid: ", fid)
 
     return fidStarkAddressMapping[fid] || null
 }
@@ -29,6 +32,8 @@ export async function getMappingByStarknetAddress(
 ): Promise<number | null> {
     const fidStarkAddressMapping:IfidStarkAddressMapping = JSON.parse(localStorage?.getItem("fid-starkaddress") || "{}")
     
+    console.log("trying to get mapping of starknet address: ", starknetAddress)
+
     return parseInt(Object.keys(fidStarkAddressMapping).find(fid =>
         fidStarkAddressMapping[parseInt(fid)] === starknetAddress) ?? "") || null
 
