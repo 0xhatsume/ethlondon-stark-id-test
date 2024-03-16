@@ -16,7 +16,7 @@ export default function Home() {
           content={`${BASE_URL}api/redirect`}
         />
       </Head>
-      Henlos Bro
+      Henlos Bro wif Local Storage
     </>
   );
 }

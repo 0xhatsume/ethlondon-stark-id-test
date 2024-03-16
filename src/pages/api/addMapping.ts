@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { addOrUpdateMapping } from "./db";
+//import { addOrUpdateMapping } from "./db";
+import { addOrUpdateMapping } from "./localStoreDb";
 
 export default async function handler(
   req: NextApiRequest,
