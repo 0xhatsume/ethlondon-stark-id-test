@@ -15,12 +15,12 @@ export async function addOrUpdateMapping(
     const existingMapping = await getMappingByFid(fid);
     if (existingMapping) {
       await client.query(
-        "UPDATE user_mappings SET starknet_address = $1 WHERE fid = $2",
+        "UPDATE public.user_mappings SET starknet_address = $1 WHERE fid = $2",
         [starknetAddress, fid]
       );
     } else {
       await client.query(
-        "INSERT INTO user_mappings (fid, starknet_address) VALUES ($1, $2)",
+        "INSERT INTO public.user_mappings (fid, starknet_address) VALUES ($1, $2)",
         [fid, starknetAddress]
       );
     }
@@ -34,7 +34,7 @@ export async function getMappingByFid(fid: number): Promise<string | null> {
   const client = await pool.connect();
   try {
     const res = await client.query(
-      "SELECT starknet_address FROM user_mappings WHERE fid = $1",
+      "SELECT starknet_address FROM public.user_mappings WHERE fid = $1",
       [fid]
     );
     return res.rows[0]?.starknet_address || null;
@@ -50,7 +50,7 @@ export async function getMappingByStarknetAddress(
   const client = await pool.connect();
   try {
     const res = await client.query(
-      "SELECT fid FROM user_mappings WHERE starknet_address = $1",
+      "SELECT fid FROM public.user_mappings WHERE starknet_address = $1",
       [starknetAddress]
     );
     return res.rows[0]?.fid || null;

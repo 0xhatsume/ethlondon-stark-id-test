@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-//import { getMappingByStarknetAddress } from "./db";
-import { getMappingByStarknetAddress } from "./localStoreDb";
+import { getMappingByStarknetAddress } from "./db";
+//import { getMappingByStarknetAddress } from "./localStoreDb";
 
 export default async function handler(
   req: NextApiRequest,
